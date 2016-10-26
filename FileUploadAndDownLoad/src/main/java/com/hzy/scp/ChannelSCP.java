@@ -20,15 +20,15 @@ public class ChannelSCP {
 	
 	private String ip;  
     private int port;  
-    private String user;//登录用户名  
-    private String password;//生成私钥的密码和登录密码，这两个共用这个密码  
+    private String user;
+    private String password;
     
-    private String PRIVATEKEY = "";// 本机的私钥文件  
+    private String PRIVATEKEY = "";
     
-    // 使用用户名和密码来进行登录验证。如果为true则通过用户名和密码登录，false则使用rsa免密码登录
+    // 
     private boolean usePassword;
     
-    // SSH 连接
+    // 
     private Connection connection;
     
     synchronized public static ChannelSCP getInstance(final String ipAddress, final String userName, final String userPassword) {
@@ -49,7 +49,7 @@ public class ChannelSCP {
 	}
 
 	/** 
-     * ssh用户登录验证，使用用户名和密码来认证 
+     * 
      *  
      * @param user 
      * @param password 
@@ -65,7 +65,7 @@ public class ChannelSCP {
     } 
     
     /** 
-     * ssh用户登录验证，使用用户名、私钥、密码来认证 其中密码如果没有可以为null，生成私钥的时候如果没有输入密码，则密码参数为null 
+     * 
      *  
      * @param user 
      * @param privateKey 
@@ -99,11 +99,11 @@ public class ChannelSCP {
             connection.connect();  
              
             if (isAuth()) {  
-                System.out.println("认证成功!");  
+                System.out.println("锟斤拷证锟缴癸拷!");  
                 SCPClient scpClient = connection.createSCPClient();  
                 scpClient.get(remoteFile, path);  
             } else {  
-                System.out.println("认证失败!");  
+                System.out.println("锟斤拷证失锟斤拷!");  
             }  
         } catch (IOException e) {  
             e.printStackTrace();  
@@ -126,7 +126,7 @@ public class ChannelSCP {
                 SCPClient scpClient = connection.createSCPClient();  
                 scpClient.put(localFile, remoteTargetDirectory);  
             } else {  
-                System.out.println("认证失败!");  
+                System.out.println("锟斤拷证失锟斤拷!");  
             }  
         } catch (Exception ex) {  
             ex.printStackTrace();  

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.hzy.scp;
+package com.hzy.ssh2;
 
 import java.io.File;
 import java.io.IOException;

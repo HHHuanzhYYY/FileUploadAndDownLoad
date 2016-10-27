@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.hzy.ftp;
+package com.hzy.util;
 
 /**
  * @author HZY
@@ -10,27 +10,10 @@ package com.hzy.ftp;
 public final class RemoteServerInfo {
 	
 	private String serverAddress;
+	private int port;
 	private String userName;
 	private String userPassword;
 	private String remoteDirectory;
-
-	/**
-	 * 获取remoteDirectory.
-	 *
-	 * @return the remoteDirectory
-	 */
-	public String getRemoteDirectory() {
-		return remoteDirectory;
-	}
-
-	/**
-	 * 设置remoteDirectory.
-	 *
-	 * @param remoteDirectory the remoteDirectory to set
-	 */
-	public void setRemoteDirectory(String remoteDirectory) {
-		this.remoteDirectory = remoteDirectory;
-	}
 
 	/**
 	 * 获取serverAddress.
@@ -48,6 +31,24 @@ public final class RemoteServerInfo {
 	 */
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress = serverAddress;
+	}
+
+	/**
+	 * 获取port.
+	 *
+	 * @return the port
+	 */
+	public int getPort() {
+		return port;
+	}
+
+	/**
+	 * 设置port.
+	 *
+	 * @param port the port to set
+	 */
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 	/**
@@ -86,4 +87,21 @@ public final class RemoteServerInfo {
 		this.userPassword = userPassword;
 	}
 	
+	/**
+	 * 获取remoteDirectory.
+	 *
+	 * @return the remoteDirectory
+	 */
+	public String getRemoteDirectory() {
+		return remoteDirectory;
+	}
+
+	/**
+	 * 设置remoteDirectory.
+	 *
+	 * @param remoteDirectory the remoteDirectory to set
+	 */
+	public void setRemoteDirectory(String remoteDirectory) {
+		this.remoteDirectory = remoteDirectory;
+	}
 }

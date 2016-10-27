@@ -21,15 +21,17 @@
 	<context:component-scan base-package="com.hzy.ftp" />
 	
 
-	<!-- FTPClient Instance 
-	<bean id="ftpClient" class="org.apache.commons.net.ftp.FTPClient" scope="prototype">
-	</bean> -->
-	
-	<bean id="ftpClient" class="com.hzy.ftp.FTPClient">
+	<!-- FTPClient Instance  -->
+	<bean id="ftpClient" class="org.apache.commons.net.ftp.FTPClient">
 	</bean>
 	
-	<bean id="remoteServerInfo" class="com.hzy.ftp.RemoteServerInfo">
+	<!-- 
+	<bean id="ftpClient" class="com.hzy.ftp.FTPClient">
+	</bean> -->
+	
+	<bean id="remoteServerInfo" class="com.hzy.util.RemoteServerInfo">
 		<property name="serverAddress" value="172.27.18.151" />
+		<property name="port" value="22" />
 		<property name="userName" value="dev" />
 		<property name="userPassword" value="Booking@0715" />
 		<property name="remoteDirectory" value="/opt/app/prouser/Temp" />
@@ -38,6 +40,17 @@
 	<bean id="channelFTP" class="com.hzy.ftp.ChannelFTP" destroy-method="close" scope="singleton">
 		<constructor-arg name="ftp" ref="ftpClient" />
 		<constructor-arg name="remoteServerInfo" ref="remoteServerInfo" />
+	</bean>	
+	
+	<bean id="sshConn" class="ch.ethz.ssh2.Connection">
+		<constructor-arg name="hostname" value="${remoteServerInfo.serverAddress}" />
+		<constructor-arg name="port" value="${remoteServerInfo.port}" />
 	</bean>
+	
+	<bean id="commandExec" class="com.hzy.ssh2.CommandExecService">
+		<constructor-arg name="remoteServerInfo" ref="remoteServerInfo" />
+		<constructor-arg name="connection" ref="sshConn" />
+	</bean>
+	
 
 </beans>

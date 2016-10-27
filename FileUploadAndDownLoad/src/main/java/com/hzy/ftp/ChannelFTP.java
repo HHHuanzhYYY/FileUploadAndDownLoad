@@ -10,10 +10,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.SocketException;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.hzy.util.RemoteServerInfo;
 
 /**
  * @author HZY
@@ -38,10 +41,7 @@ public class ChannelFTP implements Closeable {
 		initFTP();
 	}
 	
-	private boolean initFTP() throws SocketException, IOException {
-		//FTPClientConfig config = new FTPClientConfig();
-		
-		
+	private boolean initFTP() throws SocketException, IOException {	
 		this.ftp.connect(remoteServerInfo.getServerAddress());
 		
 		if(!ftp.login(remoteServerInfo.getUserName(), remoteServerInfo.getUserPassword())) {
@@ -70,6 +70,8 @@ public class ChannelFTP implements Closeable {
 		File upload = new File(localDirectory + "/" + fileToFTP);
 		try (InputStream is = new FileInputStream(upload)) {
 			this.ftp.storeFile(upload.getName(), is);
+			
+			System.out.println("Upload Successful...");
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
